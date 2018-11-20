@@ -10,12 +10,11 @@
   "author": "Jared Hanson",
   "license": "Unlicense",
   "homepage": "https://github.com/passport/express-4.x-facebook-example",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/passport/express-4.x-facebook-example.git"
+  "scripts": {
+    "start": "node server.js"
   },
-  "bugs": {
-    "url": "https://github.com/passport/express-4.x-facebook-example/issues"
+  "engines": {
+    "node": "8.11.3"
   },
   "dependencies": {
     "body-parser": "^1.13.2",
