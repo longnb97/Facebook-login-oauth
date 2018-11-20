@@ -33,6 +33,10 @@ app.get(
   })
 );
 
+app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res)=> {
+  res.send('authenticated')
+});
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning art ${PORT}`));
 
