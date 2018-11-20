@@ -47,7 +47,7 @@ passport.use(
     {
       clientID: "584736121976309",
       clientSecret: "b2b63fb97643af04ee5dd490fca7b42f",
-      callbackURL: "https:///auth/fb/login/cb"
+      callbackURL: "https://loginfbapi.herokuapp.com/auth/fb/cb"
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
