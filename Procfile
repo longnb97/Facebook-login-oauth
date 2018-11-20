@@ -1,1 +1,1 @@
-web: node server.js
+web: CLIENT_ID=__FACEBOOK_CLIENT_ID__ CLIENT_SECRET=__FACEBOOK_CLIENT_SECRET__ node server.js

@@ -11,7 +11,7 @@
   "license": "Unlicense",
   "homepage": "https://github.com/passport/express-4.x-facebook-example",
   "scripts": {
-    "start": "node server.js"
+    "start": "CLIENT_ID=__FACEBOOK_CLIENT_ID__ CLIENT_SECRET=__FACEBOOK_CLIENT_SECRET__ node server.js"
   },
   "engines": {
     "node": "8.11.3"
