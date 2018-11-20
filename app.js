@@ -45,6 +45,8 @@ mongoose.connect("mongodb://balo11044@ds145072.mlab.com:45072/quanlynhahang",(er
 passport.use(
   new FacebookPassport(
     {
+      // clientID: "334437024023212",
+      // clientSecret: "b2b63fb97643af04ee5dd490fca7b42f",
       clientID: "584736121976309",
       clientSecret: "b2b63fb97643af04ee5dd490fca7b42f",
       callbackURL: "https://loginfbapi.herokuapp.com/auth/fb/cb"
