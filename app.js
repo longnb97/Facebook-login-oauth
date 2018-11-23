@@ -40,11 +40,11 @@ app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
   console.log(req.user);
   console.log("````````````````````````````````````````````````````");
   console.log("redirecting to profile page");
-  res.render('profile')
+  res.redirect('/profile')
 });
 
 app.get("/profile", (req, res) => {
-  res.render('profile')
+  res.render('profile', { displayname: req.user.displayname })
 });
 
 // function loginCheck(req, res, next) {
