@@ -68,7 +68,7 @@ app.get("/auth/logout", (req, res) => {
 
 function middleware(req, res, next) {
   if (req.isAuthenticated()) {
-    res.redirect("/profile");
+    next();
   } else res.redirect("/");
 }
 
