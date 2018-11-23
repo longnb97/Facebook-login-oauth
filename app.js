@@ -79,7 +79,7 @@ passport.use(
       callbackURL: "https://loginfbapi.herokuapp.com/auth/fb/cb"
     },
     (accessToken, refreshToken, profile, done) => {
-      User.findOne({ id: profile.id }).then(userFound => {
+      User.findOne({ facebookId: profile.id }).then(userFound => {
         if (!userFound) {
           const newUser = new User();
           newUser.facebookId = profile.id;
