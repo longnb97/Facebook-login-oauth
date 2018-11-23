@@ -41,27 +41,27 @@ app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
   res.redirect("/profile");
 });
 
-app.get("/profile", loginCheck, (req, res) => {
+app.get("/profile", (req, res) => {
   res.render("profile");
 });
 
-function loginCheck(req, res, next) {
-  if (!req.user) {
-    res.redirect("/login");
-  } else {
-    next();
-  }
-}
+// function loginCheck(req, res, next) {
+//   if (!req.user) {
+//     res.redirect("/login");
+//   } else {
+//     next();
+//   }
+// }
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning at ${PORT}`));
 
-// mongoose.connect(
-//   "mongodb://balo11044@ds145072.mlab.com:45072/quanlynhahang",
-//   err => {
-//     if (err) console.error(err);
-//     else console.log("DB connect success!");
-//   }
-// );
+mongoose.connect(
+  "mongodb://balo11044@ds145072.mlab.com:45072/quanlynhahang",
+  err => {
+    if (err) console.error(err);
+    else console.log("DB connect success!");
+  }
+);
 
 passport.use(
   new FacebookPassport(
