@@ -45,15 +45,15 @@ app.get(
   })
 );
 // profileMiddleware.checkPermission,
-app.get("/profile",  (req, res) => {
+app.get("/profile",middleware ,(req, res) => {
   console.log("````````````````````````````````````````` req.user: ");
   console.log(req);
   console.log("````````````````````````````````````````````````````");
   res.render("profile");
 });
 
-app.get('/logout',middleware, (req, res) => {
-  req.logout();
+app.get('/logout', (req, res) => {
+  req.logOut();
   res.redirect('/')
 })
 
@@ -61,7 +61,7 @@ function middleware(req,res,next){
   if(req.isAuthenticated()){
     next();
   }
-  res.redirect('/sds/ds/d/sd/s/d/sd/')
+  res.redirect('/you are not authenticated')
 }
 
 const PORT = process.env.PORT || 4000;
