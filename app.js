@@ -111,7 +111,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  db.findOne({ id }).then(user => {
+  User.findOne({ id }).then(user => {
     done(null, user);
   });
 });
