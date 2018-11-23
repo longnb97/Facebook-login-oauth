@@ -68,7 +68,7 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning at ${PORT}`));
 
 mongoose.connect(
-  "mongodb://balo11044@ds145072.mlab.com:45072/quanlynhahang",
+  "mongodb://balo11044:nblong1997@ds113134.mlab.com:13134/fblogintestdb",
   err => {
     if (err) console.error(err);
     else console.log("DB connect success!");
