@@ -3,7 +3,8 @@ const app = express();
 
 const passport = require("passport");
 const FacebookPassport = require("passport-facebook");
-const session = require("express-session");
+// const session = require("express-session");
+const cookieSession = require('cookie-session');
 
 const mongoose = require("mongoose");
 const db = require("./db");
@@ -11,14 +12,18 @@ const db = require("./db");
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-app.use(
-  session({
-    secret: "reveal",
-    cookie: {
-      expires: 1000 * 60 * 60
-    }
-  })
-);
+// app.use(
+//   session({
+//     secret: "reveal",
+//     cookie: {
+//       expires: 1000 * 60 * 60
+//     }
+//   })
+// );
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [keys.session.cookieKey]
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
