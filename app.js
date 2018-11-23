@@ -45,13 +45,13 @@ app.get(
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning art ${PORT}`));
 
-mongoose.connect(
-  "mongodb://balo11044@ds145072.mlab.com:45072/quanlynhahang",
-  err => {
-    if (err) console.error(err);
-    else console.log("DB connect success!");
-  }
-);
+// mongoose.connect(
+//   "mongodb://balo11044@ds145072.mlab.com:45072/quanlynhahang",
+//   err => {
+//     if (err) console.error(err);
+//     else console.log("DB connect success!");
+//   }
+// );
 
 passport.use(
   new FacebookPassport(
