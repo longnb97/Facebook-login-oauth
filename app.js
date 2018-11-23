@@ -40,7 +40,7 @@ app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
   console.log(req.user);
   console.log("````````````````````````````````````````````````````");
   console.log("redirecting to profile page");
-  res.redirect("/profile");
+  res.render('profile')
 });
 
 app.get("/profile", (req, res) => {
@@ -76,13 +76,14 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
-      done(null, profile);
+      done(null, profile.id);
     }
   )
 );
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
+passport.serializeUser((userId, done) => {
+  console.log(`sdsdsdsdsssssssssssssssssssssssss${userId}`)
+  done(null, userId);
 });
 
 passport.deserializeUser((id, done) => {
