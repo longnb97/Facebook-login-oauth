@@ -41,28 +41,28 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => res.render("index"));
-app.get("/login" , (req, res) => res.render("login"));
+app.get("/", (req, res) => res.render("index", { user: req.user }));
+app.get("/auth/login", (req, res) => res.render("login", {user : req.user}));
 app.get("/auth/fb", passport.authenticate("facebook"));
 
 app.get(
   "/auth/fb/cb",
   passport.authenticate("facebook", {
     successRedirect: "/profile",
-    failureRedirect: "/login"
+    failureRedirect: "/auth/login"
   })
 );
 // profileMiddleware.checkPermission,
-app.get("/profile",(req, res) => {
+app.get("/profile", middleware, (req, res) => {
   console.log("````````````````````````````````````````` req.user: ");
   console.log(req.user);
   console.log("````````````````````````````````````````````````````");
-  res.render("profile");
+  res.render("profile",{user : req.user});
 });
 
 app.get("/testAuth", middleware);
 
-app.get("/logout", (req, res) => {
+app.get("/auth/logout", (req, res) => {
   req.logOut();
   res.redirect("/");
 });
