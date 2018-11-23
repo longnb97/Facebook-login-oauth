@@ -11,7 +11,7 @@ const session = require("express-session");
 const profileMiddleware = require("./middlewares/profile.middleware");
 
 const mongoose = require("mongoose");
-const db = require("./db");
+const User = require("./db");
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
@@ -49,9 +49,9 @@ app.get(
     console.log("````````````````````````````````````````````````````");
   }
 );
-app.get('/test',(req, res) =>{
-  res.send(req.user)
-})
+app.get("/test", (req, res) => {
+  res.send(req.user);
+});
 
 app.get("/profile", profileMiddleware.checkPermission, (req, res) => {
   res.render("profile");
@@ -86,16 +86,28 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
-      done(null, profile.id);
+      User.findById(profile.id).then(userFound => {
+        if (!userFound) {
+          const newUser = new User();
+          newUser.id = profile.id;
+          newUser.name = profile.displayName;
+          newUser.save(err => {
+            if (err) {
+              return done(err);
+            }
+            return done(null, newUser);
+          });
+        } else return done(null, userFound);
+      });
     }
   )
 );
 
-passport.serializeUser((userId, done) => {
-  console.log('//////////////////////////');
-  console.log(`serrialize user: user id :${userId}`);
-  console.log('//////////////////////////');
-  done(null, userId);
+passport.serializeUser((user, done) => {
+  console.log("//////////////////////////");
+  console.log(`serrialize user: user id :${user._id}`);
+  console.log("//////////////////////////");
+  done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
