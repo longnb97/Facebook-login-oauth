@@ -39,6 +39,8 @@ app.get("/profile" ,(req, res) => {
   res.render("profile");
 });
 
+app.get('/testAuth', middleware);
+
 app.get('/logout', (req, res) => {
   req.logOut();
   res.redirect('/')
@@ -46,9 +48,9 @@ app.get('/logout', (req, res) => {
 
 function middleware(req,res,next){
   if(req.isAuthenticated()){
-    next();
+    res.redirect('/authenticated')
   }
-  res.redirect('/youAreNotAuthenticated')
+  res.redirect('/notAuthenticated')
 }
 
 const PORT = process.env.PORT || 4000;
