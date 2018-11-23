@@ -24,10 +24,10 @@ app.use(passport.session());
 
 app.get("/", (req, res) => res.render("index"));
 app.get("/login", (req, res) => res.render("login"));
-app.get("/auth/fb", passport.authenticate("facebook",{scope=['profile']}));
+app.get("/auth/fb", passport.authenticate("facebook", { scope: ["profile"] }));
 
 app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
-  console.log(req.user)
+  console.log(req.user);
   console.log("redirecting to profile page");
   res.redirect("/profile");
 });
