@@ -90,7 +90,10 @@ passport.use(
 );
 
 passport.serializeUser((userId, done) => {
-  console.log(`sdsdsdsdsssssssssssssssssssssssss${userId}`);
+  console.log('//////////////////////////');
+  console.log(`serrialize user: user id :${userId}`);
+  console.log(`req.user :${req.user}`);
+  console.log('//////////////////////////');
   done(null, userId);
 });
 
