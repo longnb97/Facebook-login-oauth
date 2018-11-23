@@ -103,6 +103,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
   User.findOne({ id }).then(user => {
+    req.user = user;
     done(null, user);
   });
 });
