@@ -6,7 +6,7 @@ const app = express();
 const passport = require("passport");
 const FacebookPassport = require("passport-facebook");
 const session = require("express-session");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 // const cookieSession = require("cookie-session");
 
 const profileMiddleware = require("./middlewares/profile.middleware");
@@ -17,9 +17,17 @@ const User = require("./db");
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({ secret: 'anything' }));
+app.use(
+  session({
+    secret: "anything",
+    cookie: {
+      secure: true,
+      maxAge: 60 * 60 * 1000
+    }
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -35,25 +43,25 @@ app.get(
   })
 );
 // profileMiddleware.checkPermission,
-app.get("/profile" ,(req, res) => {
+app.get("/profile", (req, res) => {
   console.log("````````````````````````````````````````` req.user: ");
   console.log(req.user);
   console.log("````````````````````````````````````````````````````");
   res.render("profile");
 });
 
-app.get('/testAuth', middleware);
+app.get("/testAuth", middleware);
 
-app.get('/logout', (req, res) => {
+app.get("/logout", (req, res) => {
   req.logOut();
-  res.redirect('/')
-})
+  res.redirect("/");
+});
 
-function middleware(req,res,next){
-  if(req.isAuthenticated()){
-    res.redirect('/authenticated')
+function middleware(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.redirect("/authenticated");
   }
-  res.redirect('/notAuthenticated')
+  res.redirect("/notAuthenticated");
 }
 
 const PORT = process.env.PORT || 4000;
@@ -102,7 +110,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  User.findOne({ id }, (err, user)=>{
+  User.findOne({ id }, (err, user) => {
     done(err, user);
-  })
+  });
 });
