@@ -42,14 +42,12 @@ app.get(
   passport.authenticate("facebook", {
     successRedirect: "/profile",
     failureRedirect: "/login"
-  }),
-  (req, res) => {
-    console.log("````````````````````````````````````````` req.user: ");
-    console.log(req.user);
-    console.log("````````````````````````````````````````````````````");
-  }
+  })
 );
 app.get("/profile", profileMiddleware.checkPermission, (req, res) => {
+  console.log("````````````````````````````````````````` req.user: ");
+  console.log(req.user);
+  console.log("````````````````````````````````````````````````````");
   res.render("profile");
 });
 
@@ -81,7 +79,6 @@ passport.use(
       callbackURL: "https://loginfbapi.herokuapp.com/auth/fb/cb"
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
       User.findOne({ id: profile.id }).then(userFound => {
         if (!userFound) {
           const newUser = new User();
