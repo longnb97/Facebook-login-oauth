@@ -7,6 +7,7 @@ function checkPermission(req, res, next) {
     console.log(`middleware: please login first`);
     res.redirect("/login");
   } else {
+    console.log(`middleware middleware middleware middleware middleware middleware  `);
     console.log(`hello ${req.user.displayName}`);
     next();
   }
