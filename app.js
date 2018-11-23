@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 // const cookieSession = require("cookie-session");
 
 const profileMiddleware = require("./middlewares/profile.middleware");
+const PassportSetup = require('./Passport-config')
 
 const mongoose = require("mongoose");
 
