@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 
 const passport = require("passport");
-const FacebookStrategy = require('passport-facebook').Strategy;
+
 const session = require("express-session");
 const bodyParser = require("body-parser");
 // const cookieSession = require("cookie-session");
@@ -12,7 +12,6 @@ const bodyParser = require("body-parser");
 const profileMiddleware = require("./middlewares/profile.middleware");
 
 const mongoose = require("mongoose");
-const User = require("./db");
 
 app.set("views", "./views");
 app.set("view engine", "ejs");
@@ -75,40 +74,3 @@ mongoose.connect(
   }
 );
 
-passport.use(
-  new FacebookStrategy(
-    {
-      // clientID: "334437024023212",
-      // clientSecret: "b2b63fb97643af04ee5dd490fca7b42f",
-      clientID: process.env.CLIENT_ID,
-      clientSecret: process.env.APP_SECRET,
-      callbackURL: "https://loginfbapi.herokuapp.com/auth/fb/cb"
-    },
-    (accessToken, refreshToken, profile, done) => {
-      User.findOne({ facebookId: profile.id }).then(userFound => {
-        if (!userFound) {
-          const newUser = new User();
-          newUser.facebookId = profile.id;
-          newUser.name = profile.displayName;
-          newUser.save(err => {
-            if (err) {
-              return done(err);
-            }
-            return done(null, newUser);
-          });
-        } else return done(null, userFound);
-      });
-    }
-  )
-);
-
-passport.serializeUser((user, done) => {
-  console.log("//////////////////////////");
-  console.log(`serrialize user: user id :${user.id}`);
-  console.log("//////////////////////////");
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  User.findOne({ id }).then(userFound => done(null, userFound));
-});
