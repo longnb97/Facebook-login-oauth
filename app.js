@@ -37,13 +37,19 @@ app.get("/", (req, res) => res.render("index"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/auth/fb", passport.authenticate("facebook"));
 
-app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
-  console.log("````````````````````````````````````````` req.user: ");
-  console.log(req.user);
-  console.log("````````````````````````````````````````````````````");
-  console.log("redirecting to profile page");
-  res.redirect("/profile");
-});
+app.get(
+  "/auth/fb/cb",
+  passport.authenticate("facebook", {
+    successRedirect: "/profile",
+    failureRedirect: "/login"
+  }),
+  (req, res) => {
+    console.log("````````````````````````````````````````` req.user: ");
+    console.log(req.user);
+    console.log("````````````````````````````````````````````````````");
+    console.log("redirecting to profile page");
+  }
+);
 
 app.get("/profile", profileMiddleware.checkPermission, (req, res) => {
   res.render("profile", { displayname: req.user.displayname });
