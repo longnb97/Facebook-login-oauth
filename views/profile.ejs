@@ -62,12 +62,7 @@
                 <li><a href="https://picsum.photos/600/?random" target="_blank">get random images for fun</a></li>
             </ul>
         </nav>
-        <script>
-            function click() {
-              if (!user) alert("Please login first!");
-              else alert('Hi! ')
-            }
-          </script>
+        <% function click() {   if (!user) alert("Please login first!"); else alert('Hi! '); } %>
         <header>
             <h1>Welcome to your profile, <%= user.name %></h1>
             <h4>Your Facebook id is: <%= user.facebookId %>, please don't give this to anyone </h4>
