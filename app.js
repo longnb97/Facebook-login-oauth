@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 
 const profileMiddleware = require("./middlewares/profile.middleware");
-const PassportSetup = require('./Passport-config')
+const PassportSetup = require("./Passport-config");
 
 const mongoose = require("mongoose");
 
@@ -29,13 +29,15 @@ app.use(bodyParser.json());
 //   })
 // );
 let secret = "maythetokenbewithyou";
-app.use(cookieSession({
-  name: 'session',
-  keys: [secret],
- 
-  // Cookie Options
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}))
+app.use(
+  cookieSession({
+    name: "session",
+    keys: [secret],
+    maxAge: 24 * 60 * 60 * 1000,
+    resave: true,
+    saveUninitialized: true
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -68,8 +70,7 @@ app.get("/logout", (req, res) => {
 function middleware(req, res, next) {
   if (req.isAuthenticated()) {
     res.redirect("/authenticated");
-  }
-  else res.redirect("/notAuthenticated");
+  } else res.redirect("/notAuthenticated");
 }
 
 const PORT = process.env.PORT || 4000;
@@ -82,4 +83,3 @@ mongoose.connect(
     else console.log("DB connect success!");
   }
 );
-
