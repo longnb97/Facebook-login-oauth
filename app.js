@@ -47,7 +47,6 @@ app.get(
     console.log("````````````````````````````````````````` req.user: ");
     console.log(req.user);
     console.log("````````````````````````````````````````````````````");
-    console.log("redirecting to profile page");
   }
 );
 app.get('/test',(req, res) =>{
