@@ -3,8 +3,6 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 
 const User = require("./db");
 
-
-
 passport.use(
   new FacebookStrategy(
     {
@@ -37,7 +35,6 @@ passport.serializeUser((user, done) => {
     console.log("//////////////////////////");
     console.log(`serrialize user: user id :${user.id}`);
     console.log("//////////////////////////");
-    done(null, user.id);
     done(null, user.id);
   });
   
