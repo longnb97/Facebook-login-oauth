@@ -16,14 +16,7 @@ const User = require("./db");
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
-app.use(
-  session({
-    secret: "reveal",
-    cookie: {
-      expires: 1000 * 60 * 60
-    }
-  })
-);
+app.use(session({ secret: 'anything' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
