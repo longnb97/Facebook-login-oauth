@@ -44,7 +44,7 @@ app.get("/profile", loginCheck, (req, res) => {
 });
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Server listenning art ${PORT}`));
+app.listen(PORT, () => console.log(`Server listenning at ${PORT}`));
 
 // mongoose.connect(
 //   "mongodb://balo11044@ds145072.mlab.com:45072/quanlynhahang",
