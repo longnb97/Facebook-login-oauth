@@ -48,8 +48,7 @@
         <li><a href="/auth/login">Login</a></li>
         <% } %>
         <li><a href="/">Homepage</a></li>
-        <li><a id='pro5' href="/profile">Profile</a></li>
-        <script> document.getElementById('pro5').onclick = function(){ if(!user) alert('Please login first!')} </script>
+        <li><a id="pro5" onclick="click()" href="/profile">Profile</a></li>
       </ul>
     </nav>
     <header>
@@ -57,4 +56,10 @@
       <h5>written by Long with NodeJs</h5>
     </header>
   </body>
+  <script>
+    function click() {
+      if (!user) alert("Please login first!");
+      else alert('Hi! ')
+    }
+  </script>
 </html>
