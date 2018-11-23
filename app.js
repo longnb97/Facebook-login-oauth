@@ -4,7 +4,7 @@ const app = express();
 const passport = require("passport");
 const FacebookPassport = require("passport-facebook");
 // const session = require("express-session");
-const cookieSession = require('cookie-session');
+const cookieSession = require("cookie-session");
 
 const mongoose = require("mongoose");
 const db = require("./db");
@@ -20,10 +20,12 @@ app.set("view engine", "ejs");
 //     }
 //   })
 // );
-app.use(cookieSession({
-  maxAge: 24 * 60 * 60 * 1000,
-  keys: ['mayTheSecretBeWithYou']
-}));
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: ["mayTheSecretBeWithYou"]
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -43,6 +45,13 @@ app.get("/profile", loginCheck, (req, res) => {
   res.render("profile");
 });
 
+function loginCheck(req, res, next) {
+  if (!req.user) {
+    res.redirect("/login");
+  } else {
+    next();
+  }
+}
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning at ${PORT}`));
 
@@ -79,13 +88,3 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
-
-
-function loginCheck (req, res, next ){
-  if(!req.user){
-    res.redirect('/login');
-  }
-  else{
-    next();
-  }
-}
