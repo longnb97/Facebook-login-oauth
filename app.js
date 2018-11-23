@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 
 const passport = require("passport");
-const FacebookPassport = require("passport-facebook").Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const session = require("express-session");
 const bodyParser = require("body-parser");
 // const cookieSession = require("cookie-session");
@@ -76,7 +76,7 @@ mongoose.connect(
 );
 
 passport.use(
-  new FacebookPassport(
+  new FacebookStrategy(
     {
       // clientID: "334437024023212",
       // clientSecret: "b2b63fb97643af04ee5dd490fca7b42f",
