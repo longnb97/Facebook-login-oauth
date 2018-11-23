@@ -56,12 +56,18 @@
                 <li><a href="/auth/login">Login</a></li>
                 <% } %>
                 <li><a href="/">Homepage</a></li>
-                <li><a href="/profile">Profile</a></li>
+                <li><a onclick="click()" href="/profile">Profile</a></li>
                 <li><a href="https://facebook.com" target="_blank">Go to Facebook</a></li>
                 <li><a href="https://facebook.com/profile" target="_blank">Your wall</a></li>
                 <li><a href="https://picsum.photos/600/?random" target="_blank">get random images for fun</a></li>
             </ul>
         </nav>
+        <script>
+            function click() {
+              if (!user) alert("Please login first!");
+              else alert('Hi! ')
+            }
+          </script>
         <header>
             <h1>Welcome to your profile, <%= user.name %></h1>
             <h4>Your Facebook id is: <%= user.facebookId %>, please don't give this to anyone </h4>
