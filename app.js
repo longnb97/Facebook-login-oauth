@@ -34,15 +34,13 @@ app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
   res.redirect("/profile");
 });
 
-app.get("/profile", (req, res) => {
-  if (req.isAuthenticated()) {
-    console.log(`////////////////////////////// Profile authenticated!`);
-    res.render("profile", { user: req.user });
-  } else {
-    console.log(`you are not authenticated, redirecting to login page`);
-    res.redirect("/login");
-  }
-});
+app.get(
+  "/profile",
+  passport.authenticate("facebook", {
+    successRedirect: "/profile",
+    failureRedirect: "/login"
+  })
+);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning art ${PORT}`));
