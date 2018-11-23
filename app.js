@@ -45,6 +45,9 @@ app.get("/", (req, res) => res.render("index", { user: req.user }));
 app.get("/auth/login", (req, res) => res.render("login"));
 app.get("/auth/fb", passport.authenticate("facebook"));
 
+app.get("/image", middleware, (req, res) => {
+  res.render('image',{ user: req.user})
+});
 app.get(
   "/auth/fb/cb",
   passport.authenticate("facebook", {
@@ -57,9 +60,8 @@ app.get("/profile", middleware, (req, res) => {
   console.log("````````````````````````````````````````` req.user: ");
   console.log(req.user);
   console.log("````````````````````````````````````````````````````");
-  res.render("profile",{user : req.user});
+  res.render("profile", { user: req.user });
 });
-
 
 app.get("/auth/logout", (req, res) => {
   req.logOut();
