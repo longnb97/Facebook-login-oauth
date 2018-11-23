@@ -55,7 +55,7 @@ function middleware(req,res,next){
   if(req.isAuthenticated()){
     next();
   }
-  res.redirect('/you are not authenticated')
+  res.redirect('/youAreNotAuthenticated')
 }
 
 const PORT = process.env.PORT || 4000;
