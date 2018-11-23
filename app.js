@@ -39,7 +39,7 @@ app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
   res.redirect("/profile");
 });
 
-app.get("/profile", passport.authenticate("facebook"), (req, res) => {
+app.get("/profile", loginCheck, (req, res) => {
   res.render("profile");
 });
 
@@ -79,3 +79,13 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   });
 });
+
+
+function loginCheck (req, res, next ){
+  if(!req.user){
+    res.redirect('/login');
+  }
+  else{
+    next();
+  }
+}
