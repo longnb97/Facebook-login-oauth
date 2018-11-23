@@ -86,7 +86,7 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
-      User.findById({ id: profile.id }).then(userFound => {
+      User.findOne({ id: profile.id }).then(userFound => {
         if (!userFound) {
           const newUser = new User();
           newUser.id = profile.id;
