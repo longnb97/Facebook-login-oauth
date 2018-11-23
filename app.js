@@ -32,24 +32,32 @@ app.get(
     successRedirect: "/"
   })
 );
-
-app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res)=> {
-  res.send('authenticated')
+app.get("/profile", (req, res) => {
+  if(req.isAuthenticated()){
+    res.render('profile',{ user : req.user})
+  }else{
+    releaseEvents.redirect('/login')
+  }
+});
+app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
+  res.redirect("/profile");
 });
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning art ${PORT}`));
 
-mongoose.connect("mongodb://balo11044@ds145072.mlab.com:45072/quanlynhahang",(err)=>{
-  if (err) console.error(err)
-  else console.log("DB connect success!")
-})
-
+mongoose.connect(
+  "mongodb://balo11044@ds145072.mlab.com:45072/quanlynhahang",
+  err => {
+    if (err) console.error(err);
+    else console.log("DB connect success!");
+  }
+);
 
 passport.use(
   new FacebookPassport(
     {
-        // clientID: "334437024023212",
+      // clientID: "334437024023212",
       // clientSecret: "b2b63fb97643af04ee5dd490fca7b42f",
       clientID: "584736121976309",
       clientSecret: "b2b63fb97643af04ee5dd490fca7b42f",
