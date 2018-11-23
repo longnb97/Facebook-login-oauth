@@ -8,6 +8,8 @@ const FacebookPassport = require("passport-facebook");
 const session = require("express-session");
 // const cookieSession = require("cookie-session");
 
+const profileMiddleware = require("./middlewares/profile.middleware");
+
 const mongoose = require("mongoose");
 const db = require("./db");
 
@@ -40,11 +42,11 @@ app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
   console.log(req.user);
   console.log("````````````````````````````````````````````````````");
   console.log("redirecting to profile page");
-  res.redirect('/profile')
+  res.redirect("/profile");
 });
 
-app.get("/profile", (req, res) => {
-  res.render('profile', { displayname: req.user.displayname })
+app.get("/profile", profileMiddleware.checkPermission, (req, res) => {
+  res.render("profile", { displayname: req.user.displayname });
 });
 
 // function loginCheck(req, res, next) {
@@ -82,7 +84,7 @@ passport.use(
 );
 
 passport.serializeUser((userId, done) => {
-  console.log(`sdsdsdsdsssssssssssssssssssssssss${userId}`)
+  console.log(`sdsdsdsdsssssssssssssssssssssssss${userId}`);
   done(null, userId);
 });
 
