@@ -54,7 +54,7 @@ app.get('/test',(req, res) =>{
 })
 
 app.get("/profile", profileMiddleware.checkPermission, (req, res) => {
-  res.render("profile", { displayname: req.user.displayname });
+  res.render("profile");
 });
 
 // function loginCheck(req, res, next) {
