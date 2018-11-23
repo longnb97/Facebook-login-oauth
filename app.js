@@ -52,10 +52,17 @@ app.get("/profile",  (req, res) => {
   res.render("profile");
 });
 
-app.get('/logout', (req, res) => {
+app.get('/logout',middleware, (req, res) => {
   req.logout();
   res.redirect('/')
 })
+
+function middleware(req,res,next){
+  if(req.isAuthenticated()){
+    next();
+  }
+  res.redirect('/sds/ds/d/sd/s/d/sd/')
+}
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning at ${PORT}`));
