@@ -105,9 +105,9 @@ passport.use(
 
 passport.serializeUser((user, done) => {
   console.log("//////////////////////////");
-  console.log(`serrialize user: user id :${user._id}`);
+  console.log(`serrialize user: user id :${user.id}`);
   console.log("//////////////////////////");
-  done(null, user._id);
+  done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
