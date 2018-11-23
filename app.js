@@ -104,9 +104,9 @@ passport.use(
 
 passport.serializeUser((user, done) => {
   console.log("//////////////////////////");
-  console.log(`serrialize user: user id :${user.facebookId}`);
+  console.log(`serrialize user: user id :${user.id}`);
   console.log("//////////////////////////");
-  done(null, user.facebookId);
+  done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
