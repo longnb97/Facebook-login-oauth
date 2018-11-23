@@ -40,7 +40,7 @@ app.get("/auth/fb", passport.authenticate("facebook"));
 app.get(
   "/auth/fb/cb",
   passport.authenticate("facebook", {
-    successRedirect: "/test",
+    successRedirect: "/profile",
     failureRedirect: "/login"
   }),
   (req, res) => {
@@ -49,10 +49,6 @@ app.get(
     console.log("````````````````````````````````````````````````````");
   }
 );
-app.get("/test", (req, res) => {
-  res.send(req.user);
-});
-
 app.get("/profile", profileMiddleware.checkPermission, (req, res) => {
   res.render("profile");
 });

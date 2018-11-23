@@ -3,8 +3,7 @@ module.exports = {
 };
 
 function checkPermission(req, res, next) {
-    console.log(req.user)
-  if (1+1===3) {
+  if (!req.user.displayName) {
     console.log(`middleware: please login first`);
     res.redirect("/login");
   } else {
