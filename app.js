@@ -102,8 +102,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  User.findOne({ id }).then(user => {
-    req.user = user;
-    done(null, user);
-  });
+  User.findOne({ id }, (err, user)=>{
+    done(err, user);
+  })
 });
