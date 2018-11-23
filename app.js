@@ -4,10 +4,10 @@ const express = require("express");
 const app = express();
 
 const passport = require("passport");
-
-const session = require("express-session");
 const bodyParser = require("body-parser");
-// const cookieSession = require("cookie-session");
+
+// const session = require("express-session");
+const cookieSession = require("cookie-session");
 
 const profileMiddleware = require("./middlewares/profile.middleware");
 const PassportSetup = require('./Passport-config')
@@ -19,15 +19,23 @@ app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(
-  session({
-    secret: "anything",
-    cookie: {
-      secure: true,
-      maxAge: 60 * 60 * 1000
-    }
-  })
-);
+// app.use(
+//   session({
+//     secret: "anything",
+//     cookie: {
+//       secure: true,
+//       maxAge: 60 * 60 * 1000
+//     }
+//   })
+// );
+let secret = "maythetokenbewithyou";
+app.use(cookieSession({
+  name: 'session',
+  keys: [secret],
+ 
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
 app.use(passport.initialize());
 app.use(passport.session());
 
