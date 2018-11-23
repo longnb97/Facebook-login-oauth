@@ -34,13 +34,9 @@ app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
   res.redirect("/profile");
 });
 
-app.get(
-  "/profile",
-  passport.authenticate("facebook", {
-    successRedirect: "/profile",
-    failureRedirect: "/login"
-  })
-);
+app.get("/profile", passport.authenticate("facebook"), (req, res) => {
+  res.render("profile");
+});
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning art ${PORT}`));
