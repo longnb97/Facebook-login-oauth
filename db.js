@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserModel = new Schema({
-  id: { type: String },
+  facebookId: { type: String },
   name: String,
   avatarUrl: { type: String, default: "default.img" }
 });

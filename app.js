@@ -89,7 +89,7 @@ passport.use(
       User.findOne({ id: profile.id }).then(userFound => {
         if (!userFound) {
           const newUser = new User();
-          newUser.id = profile.id;
+          newUser.facebookId = profile.id;
           newUser.name = profile.displayName;
           newUser.save(err => {
             if (err) {
@@ -105,9 +105,9 @@ passport.use(
 
 passport.serializeUser((user, done) => {
   console.log("//////////////////////////");
-  console.log(`serrialize user: user id :${user.id}`);
+  console.log(`serrialize user: user id :${user.facebookId}`);
   console.log("//////////////////////////");
-  done(null, user.id);
+  done(null, user.facebookId);
 });
 
 passport.deserializeUser((id, done) => {
