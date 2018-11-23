@@ -52,10 +52,11 @@
                 <li><a href="/auth/login">Login</a></li>
                 <% } %>
                 <li><a href="/">Homepage</a></li>
+                <% function click() { if (!user){ alert("Please login first!") }} %>
                 <li><a id="pro5" onclick="click()" href="/profile">Profile</a></li>
               </ul>
             </nav>
-            <% function click() { if (!user){ alert("Please login first!") }} %>
+           
                     
             <header>
               <h2>Homepage</h2>

@@ -57,6 +57,7 @@
         <li><a href="/auth/login">Login</a></li>
         <% } %>
         <li><a href="/">Homepage</a></li>
+        <% function click() { if (!user){ alert("Please login first!") }} %>
         <li><a onclick="click()" href="/profile">Profile</a></li>
         <li>
           <a href="https://facebook.com" target="_blank">Go to Facebook</a>
@@ -71,7 +72,7 @@
         </li>
       </ul>
     </nav>
-    <% function click() { if (!user){ alert("Please login first!") }} %>
+
     <header>
       <h1>Welcome to your profile, <%= user.name %></h1>
       <h4>
@@ -80,7 +81,7 @@
       </h4>
       <h5>may the token be with you!</h5>
       <li>
-        <a
+        <a id="quote"
           href="https://fbcd.co/product-lg/b199c5a3732cced42fb7903ceab0659b_resize.jpg"
           target="_blank"
           >hey, let me tell you this!</a
