@@ -42,7 +42,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => res.render("index", { user: req.user }));
-app.get("/auth/login", (req, res) => res.render("login", {user : req.user}));
+app.get("/auth/login", (req, res) => res.render("login"));
 app.get("/auth/fb", passport.authenticate("facebook"));
 
 app.get(
