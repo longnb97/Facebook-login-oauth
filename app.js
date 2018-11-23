@@ -53,7 +53,7 @@ app.get(
   })
 );
 // profileMiddleware.checkPermission,
-app.get("/profile",{withCredentials: true}, (req, res) => {
+app.get("/profile", (req, res) => {
   console.log("````````````````````````````````````````` req.user: ");
   console.log(req.user);
   console.log("````````````````````````````````````````````````````");
