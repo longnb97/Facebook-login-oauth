@@ -25,15 +25,16 @@ app.use(passport.session());
 app.get("/", (req, res) => res.render("index"));
 app.get("/login", (req, res) => res.render("login"));
 app.get("/auth/fb", passport.authenticate("facebook"));
-app.get("/profile", (req, res) => {
-  if(req.isAuthenticated()){
-    res.render('profile',{ user : req.user})
-  }else{
-    releaseEvents.redirect('/login')
-  }
-});
+
 app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
   res.redirect("/profile");
+});
+app.get("/profile", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render("profile", { user: req.user });
+  } else {
+    releaseEvents.redirect("/login");
+  }
 });
 
 const PORT = process.env.PORT || 4000;
@@ -63,7 +64,7 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user).id;
 });
 
 passport.deserializeUser((id, done) => {
