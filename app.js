@@ -44,7 +44,7 @@ app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  console.log('profile')
+  res.render('profile')
 });
 
 // function loginCheck(req, res, next) {
