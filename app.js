@@ -47,7 +47,7 @@ app.get(
 // profileMiddleware.checkPermission,
 app.get("/profile",  (req, res) => {
   console.log("````````````````````````````````````````` req.user: ");
-  console.log(req.user);
+  console.log(req);
   console.log("````````````````````````````````````````````````````");
   res.render("profile");
 });
