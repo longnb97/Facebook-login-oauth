@@ -6,6 +6,7 @@ const app = express();
 const passport = require("passport");
 const FacebookPassport = require("passport-facebook");
 const session = require("express-session");
+const bodyParser = require('body-parser');
 // const cookieSession = require("cookie-session");
 
 const profileMiddleware = require("./middlewares/profile.middleware");
@@ -16,6 +17,8 @@ const User = require("./db");
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 app.use(session({ secret: 'anything' }));
 app.use(passport.initialize());
 app.use(passport.session());
