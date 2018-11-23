@@ -20,7 +20,7 @@ app.use(
   session({
     secret: "reveal",
     cookie: {
-      expires: 1000 * 60 * 60
+      expires: 1000 * 60 * 60 
     }
   })
 );
