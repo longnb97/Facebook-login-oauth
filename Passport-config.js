@@ -30,16 +30,26 @@ passport.use(
   )
 );
 
-
 passport.serializeUser((user, done) => {
-    console.log("//////////////////////////");
-    console.log(`serrialize user: user id :${user.id}`);
-    console.log("//////////////////////////");
-    done(null, user.id);
-  });
-  
-  passport.deserializeUser((id, done) => {
-    User.findById(id).then(user => {
-      done(null, user);
-    });
-  });
+  console.log("//////////////////////////");
+  console.log(`serrialize user: user id :${user.id}`);
+  console.log("//////////////////////////");
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findOne({ id }).then(userFound => done(null, userFound));
+});
+
+// passport.serializeUser((user, done) => {
+//   console.log("//////////////////////////");
+//   console.log(`serrialize user: user id :${user.id}`);
+//   console.log("//////////////////////////");
+//   done(null, user.id);
+// });
+
+// passport.deserializeUser((id, done) => {
+//   User.findById(id).then(user => {
+//     done(null, user);
+//   });
+// });
