@@ -27,14 +27,16 @@ app.get("/login", (req, res) => res.render("login"));
 app.get("/auth/fb", passport.authenticate("facebook"));
 
 app.get("/auth/fb/cb", passport.authenticate("facebook"), (req, res) => {
-  console.log('redirecting to profile page')
+  console.log("redirecting to profile page");
   res.redirect("/profile");
 });
+
 app.get("/profile", (req, res) => {
   if (req.isAuthenticated()) {
-    confirm.log(`////////////////////////////// Profile authenticated!`)
+    console.log(`////////////////////////////// Profile authenticated!`);
     res.render("profile", { user: req.user });
   } else {
+    console.log(`you are not authenticated, redirecting to login page`);
     res.redirect("/login");
   }
 });
