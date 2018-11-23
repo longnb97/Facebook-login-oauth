@@ -52,13 +52,11 @@ app.get("/profile",  (req, res) => {
   res.render("profile");
 });
 
-// function loginCheck(req, res, next) {
-//   if (!req.user) {
-//     res.redirect("/login");
-//   } else {
-//     next();
-//   }
-// }
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/')
+})
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning at ${PORT}`));
 
