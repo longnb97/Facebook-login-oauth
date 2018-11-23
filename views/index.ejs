@@ -48,7 +48,8 @@
         <li><a href="/auth/login">Login</a></li>
         <% } %>
         <li><a href="/">Homepage</a></li>
-        <li><a href="/profile">Profile</a></li>
+        <li><a id='pro5' href="/profile">Profile</a></li>
+        <script> document.getElementById('pro5').onclick = function(){ if(!user) alert('Please login first!')} </script>
       </ul>
     </nav>
     <header>
