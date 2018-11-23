@@ -44,7 +44,7 @@ app.get(
     failureRedirect: "/login"
   })
 );
-app.get("/profile", profileMiddleware.checkPermission, (req, res) => {
+app.get("/profile",  (req, res) => {
   console.log("````````````````````````````````````````` req.user: ");
   console.log(req.user);
   console.log("````````````````````````````````````````````````````");
