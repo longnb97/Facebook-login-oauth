@@ -1,7 +1,7 @@
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 
-const User = require("../db");
+const User = require("../models/user-model");
 
 passport.use(
   new FacebookStrategy(
@@ -29,17 +29,6 @@ passport.use(
     }
   )
 );
-
-// passport.serializeUser((user, done) => {
-//   console.log("//////////////////////////");
-//   console.log(`serrialize user: user id :${user.id}`);
-//   console.log("//////////////////////////");
-//   done(null, user.id);
-// });
-
-// passport.deserializeUser((id, done) => {
-//   User.findOne({ id }).then(userFound => done(null, userFound));
-// });
 
 passport.serializeUser((user, done) => {
   console.log("//////////////////////////");
