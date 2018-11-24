@@ -6,11 +6,11 @@ const passport = require('passport');
 module.exports = router;
 
 
-app.get("/login", (req, res) => res.render("login"));
-app.get("/fb", passport.authenticate("facebook"));
+router.get("/login", (req, res) => res.render("login"));
+router.get("/fb", passport.authenticate("facebook"));
 
 
-app.get(
+router.get(
   "/fb/cb",
   passport.authenticate("facebook", {
     successRedirect: "/profile",
