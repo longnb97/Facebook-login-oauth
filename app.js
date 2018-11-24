@@ -31,10 +31,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => res.render("index", { user: req.user }));
 app.use("/auth", require("./routes/auth-routes"));
 app.use("/profile", require("./routes/profile-routes"));
 app.use("/image", require("./routes/image-routes"));
+
+app.get("/", (req, res) => res.render("index", { user: req.user }));
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server listenning at ${PORT}`));
