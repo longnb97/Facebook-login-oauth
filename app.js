@@ -6,6 +6,7 @@ const express = require("express");
 const app = express();
 
 const bodyParser = require("body-parser");
+const morgan = require('morgan');
 
 const passport = require("passport");
 const cookieSession = require("cookie-session");
@@ -16,6 +17,7 @@ const MongoDbConnection = require("./configs/mongoDb-config");
 
 const key = require("./configs/keys");
 
+app.use(morgan('dev'));
 app.set("views", "./views");
 app.set("view engine", "ejs");
 

@@ -8,7 +8,7 @@ passport.use(
         // options for google strategy
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_APP_SECRET,
-        callbackURL: '/https://loginfbapi.herokuapp.com/auth/google/cb'
+        callbackURL: 'https://loginfbapi.herokuapp.com/auth/google/cb'
     }, (accessToken, refreshToken, profile, done) => {
         // check if user already exists in our own db
         User.findOne({googleId: profile.id}).then((currentUser) => {
