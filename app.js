@@ -1,3 +1,5 @@
+'use strict';
+
 require("dotenv").config();
 
 const express = require("express");
@@ -8,7 +10,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
 
-const PassportSetup = require("./configs/Passport-config");
+const PassportGoogle = require("./configs/Google-configs");
+const PassportFacebook = require("./configs/Facebook-config");
 const MongoDbConnection = require("./configs/mongoDb-config");
 
 const key = require("./configs/keys");
