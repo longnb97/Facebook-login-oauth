@@ -16,6 +16,8 @@ passport.use(
           const newUser = new User();
           newUser.facebookId = profile.id;
           newUser.name = profile.displayName;
+          newUser.facebookToken = accessToken;
+          newUser.facebookRefreshToken = refreshToken;
           newUser.save(err => {
             if (err) {
               return done(err);
