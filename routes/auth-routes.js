@@ -9,7 +9,7 @@ module.exports = router;
 router.get("/login", (req, res) => res.render("login"));
 router.get("/fb", passport.authenticate("facebook"));
 router.get('/google', passport.authenticate('google', {
-  scope: ['profile']
+  scope: ['profile','email']
 }));
 
 router.get(
