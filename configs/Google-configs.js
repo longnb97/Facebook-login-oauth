@@ -18,8 +18,8 @@ passport.use(
             } else {
                 // if not, create user in our db
                 new User({
-                    googleToken = accessToken,
-                    googleRefreshToken = refreshToken,
+                    googleToken : accessToken,
+                    googleRefreshToken : refreshToken,
                     googleId: profile.id,
                     name: profile.displayName
                 }).save().then(newUser => {
