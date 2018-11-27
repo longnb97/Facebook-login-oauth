@@ -10,6 +10,7 @@ passport.use(
         callbackURL: 'https://loginfbapi.herokuapp.com/auth/google/cb'
     }, (accessToken, refreshToken, profile, done) => {
         // check if user already exists in our own db
+        console.log(profile);
         User.findOne({ googleId: profile.id }).then((currentUser) => {
             if (currentUser) {
                 // already have this user
@@ -23,7 +24,7 @@ passport.use(
                     googleId: profile.id,
                     name: profile.displayName
                 }).save().then(newUser => {
-                    console.log('created new user: ', newUser);
+
                     done(null, newUser);
                 });
             }

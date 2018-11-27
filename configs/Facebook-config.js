@@ -11,6 +11,8 @@ passport.use(
       callbackURL: "https://loginfbapi.herokuapp.com/auth/fb/cb"
     },
     (accessToken, refreshToken, profile, done) => {
+      //check user existance
+      console / log(profile);
       User.findOne({ facebookId: profile.id }).then(currentUser => {
         if (!currentUser) {
           const newUser = new User();
