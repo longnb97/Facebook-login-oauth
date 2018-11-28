@@ -12,7 +12,7 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       //check user existance
-      console / log(profile);
+      console.log(profile);
       User.findOne({ facebookId: profile.id }).then(currentUser => {
         if (!currentUser) {
           const newUser = new User();
