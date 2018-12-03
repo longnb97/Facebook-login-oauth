@@ -84,7 +84,7 @@ jobs: # a collection of steps
       - run:
           name: Deploy Master to Heroku
           command: |
-           git push https://heroku:47d56956-61d2-4282-9bb4-ad8f73e244c3@git.heroku.com/messagejs.git master
+           git push https://heroku:47d56956-61d2-4282-9bb4-ad8f73e244c3@git.heroku.com/fbloginapi.git master
       - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
